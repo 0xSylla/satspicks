@@ -3,7 +3,12 @@ import { mkdirSync } from "node:fs";
 import path from "node:path";
 import type { Raffle, Submission, Ticket } from "./types";
 
-const DATA_DIR = path.join(process.cwd(), "data");
+// On serverless hosts (Vercel) the project directory is read-only and /tmp
+// is the only writable path: data there is EPHEMERAL (per-instance, lost on
+// cold starts). Demo-grade only; use a hosted DB (Turso/Postgres) for prod.
+const DATA_DIR =
+  process.env.DATA_DIR ??
+  (process.env.VERCEL ? "/tmp/satspicks" : path.join(process.cwd(), "data"));
 
 let _db: Database.Database | null = null;
 
@@ -60,6 +65,11 @@ export function db(): Database.Database {
       raffle_id TEXT,
       created_at TEXT NOT NULL
     );
+    CREATE TABLE IF NOT EXISTS lnauth (
+      k1 TEXT PRIMARY KEY,
+      pubkey TEXT,
+      created_at TEXT NOT NULL
+    );
   `);
   // Migration: older databases had one ticket per invoice (UNIQUE payment_hash)
   // and no leaf_hash column. Rebuild the table, backfilling leaf = payment hash.
@@ -100,6 +110,38 @@ export function db(): Database.Database {
     CREATE INDEX IF NOT EXISTS idx_tickets_raffle ON tickets(raffle_id, status);
     CREATE INDEX IF NOT EXISTS idx_tickets_npub ON tickets(buyer_npub);
   `);
+  // Ephemeral deployments start empty on every cold start: seed a demo
+  // raffle so the site is never blank. Opt-in via AUTO_SEED=true.
+  if (process.env.AUTO_SEED === "true") {
+    const n = (
+      _db.prepare("SELECT COUNT(*) AS n FROM raffles").get() as { n: number }
+    ).n;
+    if (n === 0) {
+      _db
+        .prepare(
+          `INSERT INTO raffles (id, title, description, location, image_url, value_fcfa,
+            ticket_price_sats, min_tickets, max_tickets, deadline, status, created_at)
+           VALUES (@id, @title, @description, @location, NULL, @value_fcfa,
+            @ticket_price_sats, @min_tickets, @max_tickets, @deadline, 'open', @created_at)`
+        )
+        .run({
+          id: "00000000-0000-4000-8000-000000000001",
+          title: "[DEMO] Villa 3 chambres, Keur Massar",
+          description:
+            "Villa de 3 chambres sur un terrain de 200 m² à Keur Massar, Dakar. " +
+            "Titre foncier vérifié par notaire partenaire (démo). Tirage prouvablement " +
+            "équitable ancré dans un bloc Bitcoin ; remboursement intégral si le seuil " +
+            "minimum n'est pas atteint.",
+          location: "Keur Massar, Dakar, Sénégal",
+          value_fcfa: 35_000_000,
+          ticket_price_sats: 10_000,
+          min_tickets: 5,
+          max_tickets: 5_000,
+          deadline: "2026-12-31",
+          created_at: new Date().toISOString(),
+        });
+    }
+  }
   return _db;
 }
 
@@ -223,6 +265,33 @@ export function updateSubmission(
   db()
     .prepare(`UPDATE submissions SET ${sets} WHERE id = @__id`)
     .run({ ...(fields as Record<string, unknown>), __id: id });
+}
+
+// ---- LNURL-auth sessions ----
+
+export function createLnauthChallenge(k1: string): void {
+  const d = db();
+  // Expire stale challenges (10 min).
+  d.prepare(
+    "DELETE FROM lnauth WHERE created_at < datetime('now', '-10 minutes')"
+  ).run();
+  d.prepare("INSERT INTO lnauth (k1, created_at) VALUES (?, datetime('now'))").run(
+    k1
+  );
+}
+
+export function getLnauth(
+  k1: string
+): { k1: string; pubkey: string | null } | undefined {
+  return db().prepare("SELECT k1, pubkey FROM lnauth WHERE k1 = ?").get(k1) as
+    | { k1: string; pubkey: string | null }
+    | undefined;
+}
+
+export function setLnauthPubkey(k1: string, pubkey: string): void {
+  db()
+    .prepare("UPDATE lnauth SET pubkey = ? WHERE k1 = ? AND pubkey IS NULL")
+    .run(pubkey, k1);
 }
 
 export function updateRaffle(id: string, fields: Partial<Raffle>): void {
