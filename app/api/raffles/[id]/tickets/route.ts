@@ -52,7 +52,7 @@ export async function POST(
   const amountSats = raffle.ticket_price_sats * quantity;
   const invoice = await createInvoice(
     amountSats,
-    `SamaKeur ${quantity} ticket${quantity > 1 ? "s" : ""} — ${raffle.title}`
+    `satsPicks ${quantity} ticket${quantity > 1 ? "s" : ""} — ${raffle.title}`
   );
 
   // One Lightning payment, N verifiable leaves: a single ticket uses the

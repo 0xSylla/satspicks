@@ -1,13 +1,13 @@
-# SamaKeur — Provably-Fair Real-Estate Raffles on Bitcoin
+# satsPicks — Provably-Fair Real-Estate Raffles on Bitcoin
 
-> *Sama kër* means "my home" in Wolof.
+> Pick a home. Pay in sats.
 
 Selling a plot of land or a house in Senegal (and much of West Africa) is an
 obstacle course: illiquid markets, months of searching for a single buyer who
 can pay the full price, title fraud, opaque middlemen. Meanwhile, most people
 can never save enough for a down payment.
 
-**SamaKeur lets a seller liquify a property through a raffle**: thousands of
+**satsPicks lets a seller liquify a property through a raffle**: thousands of
 low-price tickets paid in sats over Lightning, and a winner picked by a
 **provably fair draw anchored in a Bitcoin block hash**, verifiable by
 anyone, without trusting the platform.
@@ -16,7 +16,7 @@ Built for the [Dakar Bitcoin Hack 2026](https://dakar-bitcoin-hack-2026.devpost.
 
 ## Why Bitcoin makes this better
 
-| Classic web2 raffle (Omaze, Raffall…) | SamaKeur |
+| Classic web2 raffle (Omaze, Raffall…) | satsPicks |
 |---|---|
 | Trust the operator's RNG | `winner = sha256(block_hash ‖ merkle_root) mod n`: randomness comes from Bitcoin's proof-of-work |
 | Operator can add ghost tickets after the fact | Ticket set is committed (merkle root) **before** the target block exists, and published on Nostr |
@@ -101,7 +101,7 @@ randomness.
 
 - **Transparency**: with `NOSTR_NSEC` set (`npm run seed -- --gen-nsec`),
   raffle creation, the merkle commitment and the final result are published
-  as signed notes (tag `#samakeur`) to public relays.
+  as signed notes (tag `#satspicks`) to public relays.
 - **Identity**: buyers can connect a NIP-07 wallet (Alby, nos2x…) or paste
   their npub; tickets are bound to it and retrievable from any device via
   `GET /api/my-tickets?npub=…`.

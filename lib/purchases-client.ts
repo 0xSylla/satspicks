@@ -10,7 +10,7 @@ export interface StoredPurchase {
   date: string;
 }
 
-const KEY = "samakeur_purchases";
+const KEY = "satspicks_purchases";
 
 export function loadPurchases(): StoredPurchase[] {
   try {

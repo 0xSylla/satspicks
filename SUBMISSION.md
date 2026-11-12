@@ -1,4 +1,4 @@
-# Devpost submission draft — SamaKeur
+# Devpost submission draft — satsPicks
 
 ## Tagline
 Win a home with sats: provably-fair real-estate raffles on Bitcoin, Lightning and Nostr.
@@ -11,7 +11,7 @@ would that look like if the trust problem — "is the draw rigged?" — was
 solved by Bitcoin itself?
 
 ## What it does
-SamaKeur lets a property owner sell through a raffle: thousands of tickets at
+satsPicks lets a property owner sell through a raffle: thousands of tickets at
 ~1000 FCFA each, paid with any Lightning wallet. The winner is picked by
 `sha256(bitcoin_block_hash + merkle_root_of_tickets) mod n_tickets` — the
 ticket set is committed and published on Nostr *before* the target block is

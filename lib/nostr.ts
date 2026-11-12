@@ -38,10 +38,10 @@ export async function publishRaffleEvent(
         kind: 1,
         created_at: Math.floor(Date.now() / 1000),
         tags: [
-          ["t", "samakeur"],
-          ["t", `samakeur-${kindLabel}`],
+          ["t", "satspicks"],
+          ["t", `satspicks-${kindLabel}`],
         ],
-        content: JSON.stringify({ app: "samakeur", type: kindLabel, ...payload }),
+        content: JSON.stringify({ app: "satspicks", type: kindLabel, ...payload }),
       },
       sk
     );

@@ -6,7 +6,7 @@ import LangSwitch from "@/components/LangSwitch";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SamaKeur",
+  title: "satsPicks",
   description:
     "Provably fair real-estate raffles, paid with Bitcoin Lightning.",
 };
@@ -27,7 +27,7 @@ export default function RootLayout({
               className="flex items-center px-4 py-3.5 transition-colors hover:bg-black/5 sm:px-6"
             >
               <span className="text-base font-bold tracking-tight">
-                SamaKeur
+                satsPicks
               </span>
             </Link>
 
@@ -79,7 +79,7 @@ export default function RootLayout({
         <footer className="border-t border-black/10">
           <div className="mx-auto max-w-6xl px-4 py-6">
             <p className="text-xs text-zinc-500">
-              © 2026 SamaKeur. All rights reserved.
+              © 2026 satsPicks. All rights reserved.
             </p>
           </div>
         </footer>

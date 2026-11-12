@@ -72,7 +72,7 @@ export default function HeroArt({ className }: { className?: string }) {
           letterSpacing="2"
           fill="#71717a"
         >
-          SAMAKEUR
+          SATSPICKS
         </text>
         <text
           x="28"

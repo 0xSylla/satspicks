@@ -10,7 +10,7 @@ let _db: Database.Database | null = null;
 export function db(): Database.Database {
   if (_db) return _db;
   mkdirSync(DATA_DIR, { recursive: true });
-  _db = new Database(path.join(DATA_DIR, "samakeur.db"));
+  _db = new Database(path.join(DATA_DIR, "satspicks.db"));
   _db.pragma("journal_mode = WAL");
   _db.exec(`
     CREATE TABLE IF NOT EXISTS raffles (

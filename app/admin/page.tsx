@@ -40,7 +40,7 @@ export default function AdminPage() {
   useEffect(() => {
     let k = "";
     try {
-      k = localStorage.getItem("samakeur_admin_key") ?? "";
+      k = localStorage.getItem("satspicks_admin_key") ?? "";
       if (k) setAdminKey(k);
     } catch {}
     void refresh(k);
@@ -49,7 +49,7 @@ export default function AdminPage() {
   function saveKey(k: string) {
     setAdminKey(k);
     try {
-      localStorage.setItem("samakeur_admin_key", k);
+      localStorage.setItem("satspicks_admin_key", k);
     } catch {}
   }
 

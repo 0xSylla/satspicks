@@ -27,12 +27,12 @@ export default function TicketCard({
 
   async function share() {
     const text =
-      `🎟️ J'ai mon ticket n°${ticketNo} pour « ${raffleTitle} » sur SamaKeur !\n` +
+      `🎟️ J'ai mon ticket n°${ticketNo} pour « ${raffleTitle} » sur satsPicks !\n` +
       `Tirage prouvablement équitable, ancré dans la blockchain Bitcoin. Lightning\n` +
       `Preuve : ${paymentHash}`;
     try {
       if (navigator.share) {
-        await navigator.share({ title: "Mon ticket SamaKeur", text });
+        await navigator.share({ title: "Mon ticket satsPicks", text });
         return;
       }
       throw new Error("no web share");
@@ -52,7 +52,7 @@ export default function TicketCard({
         <div className="flex items-center gap-4 p-4">
           <div className="min-w-0 flex-1">
             <p className="text-[10px] uppercase tracking-widest text-zinc-600">
-              Ticket de tombola SamaKeur
+              Ticket de tombola satsPicks
             </p>
             <p className="tnum text-3xl font-extrabold text-terra-500">
               N° {ticketNo}

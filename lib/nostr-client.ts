@@ -7,7 +7,7 @@ interface NostrProvider {
   getPublicKey(): Promise<string>;
 }
 
-const KEY = "samakeur_npub";
+const KEY = "satspicks_npub";
 
 export function getNpub(): string | null {
   try {

@@ -229,7 +229,7 @@ export default function Landing() {
 
       {/* ============ FINAL CTA ============ */}
       <Reveal as="section" className="border-t border-black/10 py-16">
-        <p className="tnum text-btc-500">suba, sama kër: tomorrow, my home</p>
+        <p className="tnum text-btc-500">sats today, keys tomorrow</p>
         <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
           The next draw is already written
           <br />
