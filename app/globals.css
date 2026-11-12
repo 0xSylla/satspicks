@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@theme {
+  --color-base-950: #0a0a0b;
+  --color-btc-500: #f7931a;
+  --color-btc-600: #e07f06;
+  --color-terra-500: #c2410c;
+}
+
+body {
+  background: #fafafa;
+  color: #18181b;
+}
+
+/* Tabular, monospace numerals for sats, blocks, hashes */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", Menlo, monospace;
+}
+
+/* Uppercase micro-label, engineering style */
+.label {
+  font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #71717a;
+}
+
+/* Thin Bitcoin-orange rule (ticket + section accents) */
+.wax-border {
+  height: 1px !important;
+  background: var(--color-btc-500);
+}
+
+/* Form fields: flat, hairline border, orange focus */
+input,
+textarea {
+  background: #ffffff;
+  color: inherit;
+}
+input::placeholder,
+textarea::placeholder {
+  color: #a1a1aa;
+}
+input:focus,
+textarea:focus {
+  outline: 1px solid var(--color-btc-500);
+  outline-offset: 0;
+}
+
+/* Scroll reveal: hidden until .revealed is added by IntersectionObserver */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@keyframes blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.cursor-blink {
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.4s ease-out both;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) rotate(720deg);
+    opacity: 0.6;
+  }
+}
+
+.confetti {
+  position: fixed;
+  top: 0;
+  width: 8px;
+  height: 12px;
+  pointer-events: none;
+  animation: confetti-fall linear both;
+  z-index: 50;
+}
+
+/* Perforated raffle-ticket edge */
+.ticket-notch {
+  -webkit-mask: radial-gradient(circle 10px at 0 50%, transparent 98%, #000) left /
+      51% 100% no-repeat,
+    radial-gradient(circle 10px at 100% 50%, transparent 98%, #000) right / 51%
+      100% no-repeat;
+  mask: radial-gradient(circle 10px at 0 50%, transparent 98%, #000) left / 51%
+      100% no-repeat,
+    radial-gradient(circle 10px at 100% 50%, transparent 98%, #000) right / 51%
+      100% no-repeat;
+}

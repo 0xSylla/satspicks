@@ -1,0 +1,19 @@
+# LNbits with FakeWallet backend — demo Lightning node for judges.
+# Usage:
+#   docker compose up -d
+#   Open http://localhost:5000, create a wallet, copy the "Invoice/read key"
+#   into .env as LNBITS_INVOICE_KEY, set LNBITS_URL=http://localhost:5000
+#   and DEMO_MODE=false, then `npm run dev`.
+services:
+  lnbits:
+    image: lnbits/lnbits:latest
+    ports:
+      - "5000:5000"
+    environment:
+      - LNBITS_BACKEND_WALLET_CLASS=FakeWallet
+      - LNBITS_ADMIN_UI=true
+    volumes:
+      - lnbits_data:/app/data
+
+volumes:
+  lnbits_data:
