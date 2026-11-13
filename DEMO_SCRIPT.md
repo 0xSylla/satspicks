@@ -19,11 +19,13 @@ pour être dites, pas lues. Prépare avant : une tombola ouverte avec quelques
 tickets, et la clé admin copiée.
 
 **[0:00 — Landing, laisser le titre se taper tout seul]**
-> « Bonjour. Vendre une maison à Dakar peut prendre des années : il faut un
-> acheteur capable de payer des dizaines de millions cash, sur un marché où
-> les faux titres et les doubles ventes sont partout. satsPicks règle ça avec
-> une tombola immobilière dont le tirage est impossible à truquer, même par
-> nous. Je vous montre. »
+> « Bonjour et bienvenue dans cette présentation de satsPicks. satsPicks est
+> une plateforme de tombolas immobilières construite sur Bitcoin, le réseau
+> Lightning et Nostr, développée dans le cadre du Dakar Bitcoin Hack 2026.
+> Notre objectif : permettre à un propriétaire de vendre son bien en quelques
+> semaines au prix qu'il fixe, et à n'importe qui de devenir propriétaire
+> pour le prix d'un ticket — avec un tirage ancré dans la blockchain,
+> impossible à truquer, même par nous. Je vous montre comment ça marche. »
 
 **[0:25 — Scroller doucement jusqu'à "La solution"]**
 > « Le principe : le propriétaire fixe le montant minimum qu'il veut toucher.
