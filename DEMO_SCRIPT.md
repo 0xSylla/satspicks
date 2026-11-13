@@ -1,13 +1,92 @@
 # satsPicks — Demo video script (3 min, Devpost)
 
-Footage: `demo-video/satspicks-demo.mp4` (1:16, screen capture of the full
-flow). Record your voice over it with OBS / CapCut / Descript. Timings below
-match the footage; shift them a few seconds if needed. Speak at a calm pace:
-the English narration is ~140 words/min.
+Two versions below:
+- **Version A** — voice-over on the pre-recorded footage
+  (`demo-video/satspicks-demo.mp4`, 1:16), EN narration first, FR included.
+- **Version B** — "visite guidée" en français : tu navigues en direct dans
+  l'app en parlant (style screencast), comme les démos classiques du
+  hackathon, mais resserrée.
 
 Structure required by the judges: problem → solution → impact → next steps.
 
 ---
+
+## VERSION B — Visite guidée en français (~3 min 30, navigation en direct)
+
+Enregistre ton écran (OBS) sur **https://satspicks.vercel.app** en suivant
+les étapes entre crochets. Parle naturellement ; les phrases sont écrites
+pour être dites, pas lues. Prépare avant : une tombola ouverte avec quelques
+tickets, et la clé admin copiée.
+
+**[0:00 — Landing, laisser le titre se taper tout seul]**
+> « Bonjour. Vendre une maison à Dakar peut prendre des années : il faut un
+> acheteur capable de payer des dizaines de millions cash, sur un marché où
+> les faux titres et les doubles ventes sont partout. satsPicks règle ça avec
+> une tombola immobilière dont le tirage est impossible à truquer, même par
+> nous. Je vous montre. »
+
+**[0:25 — Scroller doucement jusqu'à "La solution"]**
+> « Le principe : le propriétaire fixe le montant minimum qu'il veut toucher.
+> Des milliers de participants achètent des tickets dès 1 000 francs. Si le
+> seuil est atteint, le bien est vendu ; sinon, tout le monde est remboursé.
+> Et le gagnant est désigné par la blockchain Bitcoin elle-même. »
+
+**[0:45 — Cliquer "Tenter ma chance" → fiche de la tombola ouverte]**
+> « Voici une villa aux Almadies. Valeur estimée, prix du ticket en sats et
+> en francs CFA, et le seuil minimum qui protège le vendeur. J'achète cinq
+> tickets : je mets mon nom, un contact, et je paie. »
+
+**[1:05 — Sélectionner 5, remplir, cliquer Payer → QR affiché]**
+> « Une seule facture Lightning pour les cinq tickets. N'importe quel wallet
+> la scanne : Phoenix, Wallet of Satoshi… Pas de compte bancaire, pas
+> d'inscription. Ici en mode démonstration, je simule le règlement. »
+
+**[1:20 — Cliquer "Simuler le paiement" → ticket collectionnable]**
+> « Et voilà mon ticket. Le point important : mon reçu de paiement Lightning
+> EST mon ticket. Chaque ticket a une empreinte cryptographique dérivée du
+> paiement, et elle va apparaître dans une liste publique. »
+
+**[1:35 — Aller sur /admin, coller la clé, cliquer "Clôturer (commit)"]**
+> « Côté plateforme maintenant. À la clôture, toutes les empreintes sont
+> scellées dans une racine de merkle, publiée sur Nostr, un réseau que nous
+> ne contrôlons pas, AVANT que le bloc du tirage n'existe. À partir de là,
+> impossible d'ajouter ou de retirer un ticket discrètement. »
+
+**[1:55 — Cliquer "Tirer au sort"]**
+> « Le tirage, c'est une formule : sha-256 du hash d'un vrai bloc Bitcoin,
+> plus la racine des tickets, modulo le nombre de tickets. Le hasard vient du
+> minage mondial : le manipuler est économiquement non viable. »
+
+**[2:10 — Retourner sur la fiche → l'animation du tirage se joue]**
+> « Et voici le tirage, étape par étape : le bloc est miné, son hash
+> rencontre la liste scellée… et nous avons un gagnant. Pas de boîte noire,
+> pas de "faites-nous confiance". »
+
+**[2:30 — Cliquer "Vérifier le tirage soi-même" → cliquer "Recalculer dans mon navigateur"]**
+> « Ma fonctionnalité préférée : la page Vérifier. La liste publique des
+> tickets, l'engagement, le bloc consultable sur mempool.space, et ce bouton
+> qui refait tout le calcul dans VOTRE navigateur. Coches vertes : le tirage
+> est prouvablement équitable. Il existe aussi un vérificateur en ligne de
+> commande, indépendant de la plateforme. »
+
+**[2:55 — Cliquer "Connecter" dans la navbar, montrer la modale]**
+> « Dernier détail : pas de mot de passe ici. On se connecte avec son wallet,
+> en scannant ce QR avec son app Lightning, ou avec sa clé Nostr. Le wallet
+> paie, le wallet identifie. »
+
+**[3:10 — Revenir sur la landing]**
+> « satsPicks : Lightning pour les paiements, un bloc Bitcoin pour le hasard,
+> Nostr pour la transparence. Le tout est en ligne, open-source, et la suite
+> est claire : remboursements automatiques par hold invoices, onboarding
+> notaire, et tickets USSD pour les téléphones simples. Des sats aujourd'hui,
+> les clés demain. Merci. »
+
+---
+
+## VERSION A — Voice-over on the pre-recorded footage (EN first)
+
+Timings match `demo-video/satspicks-demo.mp4`; shift a few seconds if
+needed. Speak at a calm pace: the English narration is ~140 words/min.
 
 ## 0:00–0:20 — Hook & problem (over the landing hero, typewriter playing)
 
