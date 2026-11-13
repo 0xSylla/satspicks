@@ -7,3 +7,5 @@ next-env.d.ts
 
 .vercel
 .admin-key-prod.txt
+demo-video/
+scripts/.demo-raffle-id
